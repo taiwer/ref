@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>教学资源</title>
+
+<!--
+  ============================================================
+  这个 index.html 会自动列出仓库里的 HTML/PDF 等文件，生成可点击的目录。
+  你平时只需要：把新的 html 上传到仓库 → 刷新本页 → 新文件自动出现在目录里。
+
+  首次使用只要改下面 CONFIG 里的 owner 和 repo 两行（其余可不动）：
+    owner: 你的 GitHub 用户名
+    repo : 仓库名（也就是网址 https://用户名.github.io/仓库名/ 里的那段）
+  仓库要是公开仓库，且已在 Settings → Pages 里开启发布（Source: main / root）。
+
+  预览小技巧：本地打开时可以用网址参数临时指定仓库，例如
+    index.html?owner=lizongzhang&repo=stat
+  ============================================================
+-->
+
+<style>
+  :root{
+    --accent:#155799;
+    --accent2:#159957;
+    --link:#1e6bb8;
+    --text:#4a5560;
+    --muted:#8a949e;
+    --line:#e6ecf2;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;color:var(--text);line-height:1.7;background:#fff;
+    font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  a{color:var(--link);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* 顶部标题条 */
+  .page-header{
+    color:#fff;text-align:center;padding:2.6rem 1.5rem;
+    background-color:var(--accent2);
+    background-image:linear-gradient(120deg,var(--accent),var(--accent2));
+  }
+  .site-title{margin:0 0 .3rem;font-size:2rem;font-weight:400}
+  .site-subtitle{margin:0;font-size:1.05rem;opacity:.85}
+  .page-meta{margin:.9rem 0 0;font-size:.88rem;opacity:.75}
+
+  /* 主体：左边目录列表，右边固定导航 */
+  .layout{
+    max-width:74rem;margin:0 auto;padding:2rem 1.5rem 4rem;
+    display:grid;gap:2.5rem;
+    grid-template-columns:minmax(0,1fr) 19rem;
+    grid-template-areas:"main toc";
+  }
+  .main{grid-area:main;min-width:0}
+  .toc{grid-area:toc}
+  @media (max-width:60rem){
+    .layout{grid-template-columns:1fr;grid-template-areas:"toc" "main";gap:1.5rem;padding-top:1.5rem}
+    .toc-box{position:static;max-height:none}
+  }
+
+  .notice{
+    background:#fffaf0;border:1px solid #f3e3c3;border-radius:.35rem;
+    padding:.8rem 1rem;font-size:.95rem;color:#8a6d3b;margin:0 0 1.8rem;
+  }
+  .bar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:0 0 1.4rem}
+  #q{
+    flex:1 1 12rem;min-width:8rem;padding:.5rem .7rem;font-size:.95rem;
+    border:1px solid #cfd8e3;border-radius:.35rem;color:inherit;font-family:inherit;
+  }
+  #q:focus{outline:2px solid #cfe0f5;border-color:#9dbfe6}
+  .hint{font-size:.85rem;color:var(--muted)}
+
+  h2.group{
+    font-size:1.25rem;color:#2f4a63;margin:2.2rem 0 .4rem;
+    padding-bottom:.3rem;border-bottom:2px solid var(--line);font-weight:600;
+  }
+  h2.group:first-of-type{margin-top:0}
+  h2.group .n{
+    font-size:.8rem;font-weight:400;color:#fff;background:#9db4cc;
+    border-radius:.7rem;padding:.05rem .5rem;vertical-align:middle;
+  }
+  .files{list-style:none;margin:0;padding:0}
+  .files li{border-bottom:1px solid #f1f5f9}
+  .files a{display:flex;align-items:center;gap:.8rem;padding:.55rem .4rem;border-radius:.3rem}
+  .files a:hover{background:#f5faff;text-decoration:none}
+  .f-name{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .f-sub{flex:0 0 auto;font-size:.8rem;color:var(--muted);max-width:14rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .f-size{flex:0 0 auto;font-size:.78rem;color:var(--muted);min-width:4.5rem;text-align:right}
+  .f-size.warn{color:#c0392b}
+  .badge{
+    flex:0 0 auto;font-size:.68rem;letter-spacing:.03em;padding:.12rem .4rem;
+    border-radius:.25rem;background:#eaf1f9;color:#41618a;text-transform:uppercase;
+  }
+
+  .toc-box{
+    position:sticky;top:1.2rem;max-height:calc(100vh - 2.4rem);overflow:auto;
+    background:#f3f6fa;border:1px solid #dce6f0;border-radius:.4rem;padding:1rem 1.1rem;
+  }
+  .toc-title{margin:0 0 .6rem;font-size:.95rem;color:#2f4a63;font-weight:600}
+  .toc-box ul{list-style:none;margin:0;padding:0}
+  .toc-box li{margin:.15rem 0}
+  .toc-box a{display:flex;justify-content:space-between;gap:.5rem;padding:.2rem 0;font-size:.92rem}
+  .toc-box .count{color:var(--muted);font-size:.8rem}
+
+  .loading,.error{padding:1rem 1.2rem;border-radius:.4rem;font-size:.95rem}
+  .loading{background:#f6f8fa;color:#57606a}
+  .error{background:#fdf0ee;border:1px solid #f5c6c0;color:#a0281a}
+  .empty{padding:1rem 1.2rem;background:#f6f8fa;border-radius:.4rem;color:#57606a;font-size:.95rem}
+</style>
+</head>
+<body>
+
+<section class="page-header">
+  <h1 class="site-title" id="site-title">教学资源</h1>
+  <p class="site-subtitle" id="site-subtitle"></p>
+  <p class="page-meta" id="site-meta">正在读取文件列表…</p>
+</section>
+
+<div class="layout">
+  <div class="toc">
+    <div class="toc-box">
+      <p class="toc-title">目录</p>
+      <ul id="toc-list"><li class="count">加载中…</li></ul>
+    </div>
+  </div>
+
+  <div class="main">
+    <p class="notice" id="notice"></p>
+    <div class="bar">
+      <input id="q" type="search" placeholder="搜索文件名，例如 chap、ggplot、作业…" />
+      <span class="hint" id="filter-hint"></span>
+    </div>
+    <div id="catalog"><div class="loading">正在读取仓库文件列表…</div></div>
+  </div>
+</div>
+
+<script>
+/* ================== 1. 配置：一般只需要改 owner 和 repo ================== */
+const CONFIG = {
+  owner : 'taiwer',       // ← 改成你的 GitHub 用户名
+  repo  : 'ref',          // ← 改成仓库名（网址里的 /ref/ 那一段）
+  branch: 'main',         // ← 分支名，一般是 main
+
+  siteTitle   : '统计学 & R语言与统计应用',
+  siteSubtitle: '教材 · 讲义 · 案例 · 实验 · 习题解答',
+  notice      : '本站电子资源、讲义供学习交流使用，请勿用于商业用途。',
+
+  // 只显示这些后缀的文件
+  extensions: ['html', 'htm', 'pdf', 'ipynb', 'pptx', 'docx', 'xlsx', 'zip', 'csv', 'mp4'],
+
+  // 不显示的：完整文件名，或用正则匹配路径
+  ignore: ['index.html', '.nojekyll'],
+  ignorePatterns: [/^\./, /^_/, /\/(\.|_)/, /\.(rmd|qmd|r|md|yml|yaml|json|js|css)$/i, /^README/i],
+
+  // 分类规则：从上往下，命中第一条就归到那一类；都没命中的进「其他」
+  // 放在子目录里的文件，会用子目录名当作分类名
+  groups: [
+    { name: '统计学理论课素材', test: /^chap/i },
+    { name: 'R语言与统计应用', test: /^(r\d|rintro|l\d|base_graph|ggplot|data_type)/i },
+    { name: '案例和实验',       test: /^case/i },
+    { name: '习题解答',         test: /solution/i },
+    { name: '学生作业',         test: /^stu/i },
+  ],
+
+  // 想给某个文件起个好读的名字，写在这里（key 是文件名或子目录里的路径）
+  titles: {
+    // 'chap1.html': '第1章 导论',
+  },
+
+  // 点击文件时：false = 当前窗口打开，true = 新标签页打开
+  newTab: false,
+};
+
+/* ================== 2. 以下代码不用改 ================== */
+(async function () {
+  const params = new URLSearchParams(location.search);
+  const owner  = params.get('owner')  || CONFIG.owner;
+  const repo   = params.get('repo')   || CONFIG.repo;
+  const branch = params.get('branch') || CONFIG.branch;
+
+  const el  = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const collator = new Intl.Collator('zh-Hans-CN', { numeric: true, sensitivity: 'base' });
+  const extOf  = p => (p.split('.').pop() || '').toLowerCase();
+  const baseOf = p => p.split('/').pop();
+  const labelOf = p => CONFIG.titles[p] || baseOf(p).replace(/\.[^.]+$/, '');
+  const hrefOf = p => p.split('/').map(encodeURIComponent).join('/');
+
+  const RULE_ORDER = CONFIG.groups.map(g => g.name);
+
+  document.title = CONFIG.siteTitle;
+  el('site-title').textContent = CONFIG.siteTitle;
+  el('site-subtitle').textContent = CONFIG.siteSubtitle;
+  el('notice').textContent = CONFIG.notice;
+
+  function fmtSize(n) {
+    if (n == null) return '';
+    if (n < 1024) return n + ' B';
+    if (n < 1024 * 1024) return (n / 1024).toFixed(0) + ' KB';
+    return (n / 1024 / 1024).toFixed(1) + ' MB';
+  }
+  function hidden(path) {
+    if (CONFIG.ignore.includes(path)) return true;
+    if (!CONFIG.extensions.includes(extOf(path))) return true;
+    return CONFIG.ignorePatterns.some(re => re.test(path));
+  }
+  function groupOf(path) {
+    if (path.includes('/')) return path.split('/')[0];          // 子目录里的文件按目录名分组
+    for (const g of CONFIG.groups) if (g.test.test(path)) return g.name;
+    return '其他';
+  }
+  function orderGroups(names) {
+    return names.sort((a, b) => {
+      if (a === '其他' && b !== '其他') return 1;
+      if (b === '其他' && a !== '其他') return -1;
+      const ia = RULE_ORDER.indexOf(a), ib = RULE_ORDER.indexOf(b);
+      if (ia !== -1 && ib !== -1) return ia - ib;
+      if (ia !== -1) return -1;
+      if (ib !== -1) return 1;
+      return collator.compare(a, b);
+    });
+  }
+
+  const cacheKey = 'gh-index:' + owner + '/' + repo + '@' + branch;
+  function readCache() {
+    try {
+      const raw = sessionStorage.getItem(cacheKey);
+      if (!raw) return null;
+      const o = JSON.parse(raw);
+      return Date.now() - o.t < 10 * 60 * 1000 ? o.v : null;   // 10 分钟内不重复请求
+    } catch (e) { return null; }
+  }
+  function writeCache(v) {
+    try { sessionStorage.setItem(cacheKey, JSON.stringify({ t: Date.now(), v: v })); } catch (e) {}
+  }
+
+  async function fetchFiles() {
+    const cached = readCache();
+    if (cached) return cached;
+    const url = 'https://api.github.com/repos/' + encodeURIComponent(owner) + '/' + encodeURIComponent(repo)
+              + '/git/trees/' + encodeURIComponent(branch) + '?recursive=1';
+    const res = await fetch(url, { headers: { Accept: 'application/vnd.github+json' } });
+    if (!res.ok) {
+      const e = new Error(res.status === 403 || res.status === 429 ? 'rate' : res.status === 404 ? 'notfound' : 'http');
+      e.status = res.status;
+      throw e;
+    }
+    const data = await res.json();
+    const files = (data.tree || [])
+      .filter(t => t.type === 'blob' && !hidden(t.path))
+      .map(t => ({ path: t.path, size: t.size }))
+      .sort((a, b) => collator.compare(a.path, b.path));
+    const out = { files: files, truncated: !!data.truncated };
+    writeCache(out);
+    return out;
+  }
+
+  async function fetchUpdated() {
+    try {
+      const res = await fetch('https://api.github.com/repos/' + encodeURIComponent(owner) + '/' + encodeURIComponent(repo)
+        + '/commits?per_page=1&sha=' + encodeURIComponent(branch));
+      if (!res.ok) return null;
+      const arr = await res.json();
+      const c = arr && arr[0] && arr[0].commit;
+      const d = c && ((c.committer && c.committer.date) || (c.author && c.author.date));
+      return d ? d.slice(0, 10) : null;
+    } catch (e) { return null; }
+  }
+
+  function itemHtml(f) {
+    const target = CONFIG.newTab ? ' target="_blank" rel="noopener"' : '';
+    const sub = f.path.includes('/') ? f.path
+              : (CONFIG.titles[f.path] ? baseOf(f.path) : '');
+    const size = fmtSize(f.size);
+    const big  = f.size != null && f.size > 5 * 1024 * 1024;
+    const key  = (labelOf(f.path) + ' ' + f.path).toLowerCase();
+    return '<li data-key="' + esc(key) + '">'
+         +   '<a href="' + esc(hrefOf(f.path)) + '"' + target + '>'
+         +     '<span class="f-name">' + esc(labelOf(f.path)) + '</span>'
+         +     (sub ? '<span class="f-sub">' + esc(sub) + '</span>' : '')
+         +     (size ? '<span class="f-size' + (big ? ' warn' : '') + '">' + size + '</span>' : '')
+         +     '<span class="badge">' + esc(extOf(f.path)) + '</span>'
+         +   '</a>'
+         + '</li>';
+  }
+
+  function render(state, updated) {
+    const files = state.files;
+    const meta = '共 ' + files.length + ' 个文件' + (updated ? ' · 最近更新 ' + updated : '');
+    el('site-meta').textContent = meta;
+
+    if (!files.length) {
+      el('toc-list').innerHTML = '<li class="count">暂无文件</li>';
+      el('catalog').innerHTML = '<div class="empty">仓库里还没有可以显示的文件。把 .html 文件上传到仓库里，刷新本页就会出现在目录中。</div>';
+      return;
+    }
+
+    const groups = new Map();
+    for (const f of files) {
+      const g = groupOf(f.path);
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(f);
+    }
+    const order = orderGroups(Array.from(groups.keys()));
+
+    el('toc-list').innerHTML = order.map((g, i) =>
+      '<li><a href="#g' + i + '">' + esc(g) + '<span class="count">' + groups.get(g).length + '</span></a></li>'
+    ).join('');
+
+    el('catalog').innerHTML = order.map((g, i) =>
+      '<h2 class="group" id="g' + i + '">' + esc(g) + ' <span class="n">' + groups.get(g).length + '</span></h2>'
+      + '<ul class="files">' + groups.get(g).map(itemHtml).join('') + '</ul>'
+    ).join('') + (state.truncated ? '<p class="hint">（文件较多，GitHub 只返回了前一部分）</p>' : '');
+
+    const items = Array.from(document.querySelectorAll('#catalog li[data-key]'));
+    const heads = Array.from(document.querySelectorAll('#catalog h2.group'));
+    const hint  = el('filter-hint');
+    hint.textContent = '共 ' + items.length + ' 项';
+
+    el('q').addEventListener('input', function () {
+      const needle = this.value.trim().toLowerCase();
+      let shown = 0;
+      for (const li of items) {
+        const hit = !needle || li.dataset.key.indexOf(needle) !== -1;
+        li.hidden = !hit;
+        if (hit) shown++;
+      }
+      for (const h of heads) {
+        h.hidden = h.nextElementSibling.querySelectorAll('li[data-key]:not([hidden])').length === 0;
+      }
+      hint.textContent = needle ? '匹配 ' + shown + ' / ' + items.length + ' 项' : '共 ' + items.length + ' 项';
+    });
+  }
+
+  function showError(err) {
+    const msg =
+      err.message === 'rate'
+        ? 'GitHub 接口的匿名访问次数用完了（每小时 60 次），请过一会儿刷新本页。'
+        : err.message === 'notfound'
+          ? '找不到仓库或分支：' + owner + ' / ' + repo + ' @ ' + branch + '。请检查 index.html 里 CONFIG 的 owner、repo、branch，并确认仓库是公开仓库。'
+          : '读取文件列表失败（' + (err.status || '网络错误') + '），请检查网络后刷新。';
+    const url = 'https://github.com/' + owner + '/' + repo;
+    el('site-meta').textContent = '暂时无法读取文件列表';
+    el('toc-list').innerHTML = '<li class="count">—</li>';
+    el('catalog').innerHTML = '<div class="error">' + esc(msg) + '<br>也可以直接访问仓库：<a href="' + esc(url) + '">' + esc(url) + '</a></div>';
+  }
+
+  try {
+    const results = await Promise.all([fetchFiles(), fetchUpdated()]);
+    render(results[0], results[1]);
+  } catch (err) {
+    showError(err);
+  }
+})();
+</script>
+</body>
+</html>
