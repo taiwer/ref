@@ -224,7 +224,7 @@ const CONFIG = {
     });
   }
 
-  const cacheKey = 'gh-index:' + owner + '/' + repo + '@' + branch;
+  const cacheKey = 'gh-index:v2:' + owner + '/' + repo + '@' + branch;   // v2：升版本号让旧缓存（含误缓存的空列表）立即失效
   function readCache() {
     try {
       const raw = sessionStorage.getItem(cacheKey);
