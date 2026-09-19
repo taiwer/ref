@@ -1,0 +1,89 @@
+---
+title: "第1章"
+---
+
+# 第1章 导论
+
+<img src="img/teacher.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[讲义](https://lizongzhang.github.io/stat/chap1.html)
+
+
+# 课堂练习
+
+
+## 题目1
+
+### 1.1 浏览下述二手房信息，可以提取二手房的哪些变量？
+
+<details>
+
+<summary>点击浏览图片</summary>
+
+- 房源1：五山花园
+
+<img src="img/house_1.png" alt="五山花园">
+
+- 房源2：华农嵩山
+<img src="img/house_2.png" alt="华农嵩山">
+
+
+- 房源3：汇景新城
+<img src="img/house_3.png" alt="汇景新城">
+
+
+
+### 1.2 从该网页中提取的变量是分类数据(有序分类还是无序分类), 还是数值数据(离散数据还是连续数据)？
+
+### 1.3 根据上述二手房房源信息，你感兴趣的问题是什么？
+
+## 题目2
+
+### 2.1 开展关于毕业生薪酬的研究，你感兴趣那些问题？列出研究问题。
+
+### 2.2 针对你想研究的的问题，你想收集那些数据？列出变量名称，这些数据是分类数据(有序分类还是无序分类), 还是数值数据(离散数据还是连续数据)？
+
+
+# Microsoft Excel
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px;">[如何加载Excel的“数据分析”加载项](https://www.bilibili.com/video/BV19S4y1r7E4/)
+
+<img src="img/video.png" style="width: 24px; height: 24px;margin-right: 10px">[不用安装就可以免费使用的网页版Excel](https://www.bilibili.com/video/BV1w6421w7Rf/)
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[如何将WORD文档转成图片？](https://www.bilibili.com/video/BV1GU4y1f7f9/)
+
+# R 和 R Studio
+
+## 下载
+
+<img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px">R  <https://www.r-project.org/>
+
+<img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px">R Studio <https://posit.co/download/rstudio-desktop/>
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px;">[R和R Studio的下载](https://www.bilibili.com/video/BV1334y1y7U5/)
+
+
+## 安装
+
+<img src="img/video.png" style="width: 24px; height: 24px;margin-right: 10px">[R和RStudio的安装](https://www.bilibili.com/video/BV1eR4y1V7uW/)
+
+## 网页版R Studio
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">posit cloud <https://posit.cloud/>
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[不用安装就能用的RStudio------RStudio
+                Cloud](https://www.bilibili.com/video/BV1zY4y1M7HX/)
+
+
+
+# 拓展资源
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">经管之家 <https://bbs.pinggu.org/> 
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">狗熊会(微信公众号) <https://www.xiong99.com.cn/> 
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">UCLA Data Analysis Examples <https://stats.oarc.ucla.edu/other/dae/> 
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">Learn Excel with Examples <https://www.excel-easy.com/examples.html> 
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">The Data And Story Library <https://dasl.datadescription.com/> 
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px"> Kaggle <https://www.kaggle.com/> 

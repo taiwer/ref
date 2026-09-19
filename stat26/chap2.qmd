@@ -1,0 +1,103 @@
+---
+title: "第2章"
+---
+
+# 讲义
+
+<img src="img/teacher.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[L2数据的搜集 Slides](https://lizongzhang.github.io/stat26/L2slide.html){target="_blank"}
+
+<img src="img/teacher.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[问卷设计](https://lizongzhang.github.io/stat26/chap2ques.html){target="_blank"}
+
+# 课堂讨论
+
+## 题目1
+
+1.1 开展关于毕业生薪酬的研究，你感兴趣那些问题？列出研究问题。
+
+1.2 针对你想研究的的问题，你想收集那些数据？列出变量名称，这些数据是分类数据(有序分类还是无序分类), 还是数值数据(离散数据还是连续数据)？
+
+# Excel练习
+
+## 习题1
+
+<details>
+
+<summary>点击展开</summary>
+
+<p>
+
+<img src="img/download.png" alt="Excel" style="width: 24px; height: 24px; margin-right: 10px;"><a href="ex2_1.xlsx" download>下载：习题1配套数据.xlsx</a>
+
+<p>
+
+![](img/ex1_1.png){width=50% fig-align="center"}
+<p>
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[数据清洗--习题1讲评](https://www.bilibili.com/video/BV1wm411271A){target="_blank"}
+
+</details>
+
+## 习题2
+
+<details>
+
+<summary>点击展开</summary>
+
+<img src="img/download.png" alt="Excel" style="width: 24px; height: 24px; margin-right: 10px;"><a href="ex2_2.xlsx" download>下载：习题2配套数据.xlsx</a>
+
+<p>
+
+![](img/ex1_2.png){width=50% fig-align="center"}
+<p>
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[数据清洗--习题2讲评](https://www.bilibili.com/video/BV1WH4y1N7eW){target="_blank"}
+
+</details>
+
+
+# 教学视频
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[如何从中国知网下载统计数据？](https://www.bilibili.com/video/BV19m4y1F7FE/){target="_blank"}
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[八爪鱼客户端抓取网页数据？](https://www.bilibili.com/video/BV18u411D7GM/){target="_blank"}
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[如何用Excel整理提取的网页数据？](https://www.bilibili.com/video/BV1HL411N7BG/){target="_blank"}
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[Excel问卷调查数据清洗](https://www.bilibili.com/video/BV1WH4y1N7eW){target="_blank"}
+
+
+
+# 拓展资源
+
+## 数据库
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">CSMAR国泰安经济金融数据库  <http://www.gtarsc.com/Home>{target="_blank"}
+        
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">中国家庭追踪调查CFPS <http://www.isss.pku.edu.cn/cfps/>{target="_blank"}
+    
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">中国家庭金融调查数据CHFS  <https://chfs.swufe.edu.cn>{target="_blank"}
+    
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">中国健康与养老数据追踪调查数据CHARLS <http://charls.pku.edu.cn>{target="_blank"}
+    
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">暨南大学社会调查中心  <https://sdc-iesr.jnu.edu.cn>{target="_blank"}
+    
+## 公众号
+
+微信公众号**抽样调查之家** 市调大赛
+
+## 文本分析在线工具
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px"> 在线词云图工具 <https://www.wordclouds.com/>{target="_blank"} 
+
+
+## 问卷调查示例
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">[微信公众号**毕导**: 专业与薪资](https://mp.weixin.qq.com/s/VvbVmMnLXqXXlJaL-71XNw)
+
+
+<img src="img/video.png" style="width: 24px; height: 24px;margin-right: 10px">[B站影视飓风: Win还是Mac?](https://b23.tv/oW2Clpf)
+
+
+
+
+
+
+

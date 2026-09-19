@@ -1,0 +1,256 @@
+<!-- 1. 右下角 Home 按钮（完全使用原有的位置与大尺寸参数） -->
+<div style="
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  z-index: 1000;
+">
+  <a href="https://lizongzhang.github.io/stat26" 
+     style="
+       display: inline-flex;
+       align-items: center;
+       gap: 8px;
+       padding: 10px 20px;
+       background-color: rgba(255, 255, 255, 0.75);
+       color: #1a5f7a;
+       text-decoration: none;
+       border: 1.5px solid rgba(26, 95, 122, 0.35);
+       border-radius: 10px;
+       font-size: 18px;
+       font-weight: bold;
+       font-family: Arial, sans-serif;
+       backdrop-filter: blur(6px);
+       -webkit-backdrop-filter: blur(6px);
+       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+       transition: all 0.2s ease-in-out;
+     "
+     onmouseover="this.style.backgroundColor='#1a5f7a'; this.style.color='#ffffff'; this.style.borderColor='#1a5f7a';"
+     onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.75)'; this.style.color='#1a5f7a'; this.style.borderColor='rgba(26, 95, 122, 0.35)';"
+  >
+    <span>🏠</span> Home
+  </a>
+</div>
+
+<!-- 2. header.html（右上角 Logo：完全还原原有 200px 宽度与绝对定位） -->
+<div style="
+  position: absolute; 
+  top: 20px; 
+  right: 20px; 
+  z-index: 1000;
+">
+  <img src="img/seal.png" 
+       style="
+         width: 40px; 
+         height: auto;
+         display: block;
+       " 
+       alt="logo">
+</div>
+
+<!-- ============================================================
+     Reveal.js slide zoom
+     Cmd/Ctrl +  : 放大幻灯片
+     Cmd/Ctrl -  : 缩小幻灯片
+     Cmd/Ctrl 0  : 恢复默认
+     ============================================================ -->
+
+<script>
+(function () {
+
+  let userZoom = 1;
+
+  const ZOOM_STEP = 1.10;
+  const MIN_ZOOM = 0.50;
+  const MAX_ZOOM = 2.50;
+
+  function getSlides() {
+    return document.querySelector('.reveal .slides');
+  }
+
+  /*
+   * Reveal.js 自己负责计算适合当前窗口的 scale。
+   *
+   * 我们只在 Reveal.js 的 scale 上再乘一个 userZoom。
+   */
+  function applyUserZoom() {
+
+    const slides = getSlides();
+
+    if (!slides || typeof Reveal === 'undefined') {
+      return;
+    }
+
+    const revealScale = Reveal.getScale();
+
+    if (!revealScale || !isFinite(revealScale)) {
+      return;
+    }
+
+    /*
+     * Reveal.js 当前版本使用 CSS zoom 来缩放 .slides。
+     * 因此直接在它计算出的 scale 上叠加我们的倍率。
+     */
+    slides.style.zoom = String(revealScale * userZoom);
+  }
+
+
+  function setUserZoom(value) {
+
+    userZoom = Math.max(
+      MIN_ZOOM,
+      Math.min(MAX_ZOOM, value)
+    );
+
+    applyUserZoom();
+  }
+
+
+  function zoomIn() {
+    setUserZoom(userZoom * ZOOM_STEP);
+  }
+
+
+  function zoomOut() {
+    setUserZoom(userZoom / ZOOM_STEP);
+  }
+
+
+  function resetZoom() {
+    setUserZoom(1);
+  }
+
+
+  /*
+   * Cmd/Ctrl + / -
+   *
+   * 注意：
+   * 我们主动阻止浏览器的默认网页缩放。
+   * 因此 Cmd+ 会真正控制幻灯片，而不是整个网页。
+   */
+  document.addEventListener('keydown', function (event) {
+
+    if (!(event.metaKey || event.ctrlKey)) {
+      return;
+    }
+
+    /*
+     * 如果用户正在输入框、文本框或可编辑区域，
+     * 不干扰正常的 Cmd+/Cmd- 操作。
+     */
+    const target = event.target;
+
+    if (
+      target &&
+      (
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.tagName === 'SELECT' ||
+        target.isContentEditable
+      )
+    ) {
+      return;
+    }
+
+
+    /*
+     * Cmd/Ctrl +
+     *
+     * Mac Chrome/Safari:
+     * event.key 通常是 "+" 或 "="
+     */
+    if (
+      event.key === '+' ||
+      event.key === '='
+    ) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      zoomIn();
+
+      return;
+    }
+
+
+    /*
+     * Cmd/Ctrl -
+     */
+    if (event.key === '-') {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      zoomOut();
+
+      return;
+    }
+
+
+    /*
+     * Cmd/Ctrl 0
+     */
+    if (event.key === '0') {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      resetZoom();
+
+      return;
+    }
+
+  }, true);
+
+
+  /*
+   * Reveal.js 初始化完成以后执行。
+   */
+  function initializeZoomControl() {
+
+    if (typeof Reveal === 'undefined') {
+      setTimeout(initializeZoomControl, 100);
+      return;
+    }
+
+
+    /*
+     * Reveal.js ready
+     */
+    Reveal.on('ready', function () {
+
+      userZoom = 1;
+
+      setTimeout(function () {
+        applyUserZoom();
+      }, 0);
+
+    });
+
+
+    /*
+     * Reveal.js 每次重新计算 slide scale 时都会触发 resize。
+     *
+     * 例如：
+     * - 浏览器窗口改变大小
+     * - 全屏
+     * - 改变屏幕
+     * - Reveal.layout()
+     *
+     * 这时重新叠加我们的 userZoom。
+     */
+    Reveal.on('resize', function () {
+
+      setTimeout(function () {
+        applyUserZoom();
+      }, 0);
+
+    });
+
+  }
+
+
+  initializeZoomControl();
+
+})();
+</script>
+

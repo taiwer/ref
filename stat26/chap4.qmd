@@ -1,0 +1,33 @@
+---
+title: "第4章"
+---
+
+# 第4章 数据的概括性度
+
+<img src="img/teacher.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[讲义](https://lizongzhang.github.io/stat26/L4slide.html){target="_blank"}
+
+# Excel教学视频
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[Excel 计算描述性统计量的函数](https://www.bilibili.com/video/BV1va411A7Db/){target="_blank"}
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[EXCEL数据分析加载项](https://www.bilibili.com/video/BV19S4y1r7E4/){target="_blank"}
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[Excel 数据分析加载项中的描述统计功能](https://www.bilibili.com/video/BV1Sy4y1r78g/){target="_blank"}
+
+
+# 本章习题
+
+教材P72 习题4.2，4.3，4.5和4.6
+
+
+# 习题讲评
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[教材第4章习题讲评](https://www.bilibili.com/video/BV1nL411Q79r/){target="_blank"}
+
+# 拓展资源
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[Napkin AI 文本一键可视化!](https://www.bilibili.com/video/BV1ju4gz3Euv/){target="_blank"}
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[Excel数据清洗](https://www.bilibili.com/video/BV1uc41177Mn/){target="_blank"}
+
+

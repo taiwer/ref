@@ -1,0 +1,38 @@
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "统计学26秋"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - chap1.qmd
+      - chap2.qmd
+      - chap3.qmd
+      - chap4.qmd
+      - chap6.qmd
+      - chap7.qmd
+      - chap8.qmd
+      - chap9.qmd
+      - chap10.qmd
+      - chap11.qmd
+      - chap13.qmd
+      - case.qmd
+    tools:
+      - icon: envelope
+        href: lizongzhang9@qq.com
+  page-footer:
+    right: "Data illuminates insights."
+    left: "&copy; Copyright 2026, Li Zongzhang"
+format:
+  html:
+    theme: [yeti, theme_light.scss]
+    fontcolor: "#044875"
+    toc: true
+editor: source
+execute:
+  default-language: R
+
+

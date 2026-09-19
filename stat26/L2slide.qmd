@@ -1,0 +1,417 @@
+---
+title: 第2章 数据的搜集
+date: today
+author: 
+  name: "Li Zongzhang"
+format: 
+  revealjs:
+    incremental: false
+    theme: [sky]
+    slide-number: c/t
+    show-slide-number: all
+    code-fold: true
+    code-copy: true
+    code-summary: "查看R代码"
+    chalkboard: 
+      buttons: true
+      board-canvas-background: "#f0f0f0"
+    preview-links: auto
+    toc-title: "大纲"
+    css: style.css
+    footer: |
+      [STAT](https://lizongzhang.github.io/stat26) | © 2026, [Li Zongzhang](https://space.bilibili.com/590872906/)
+    include-before-body: 
+      - header.html
+      - fonts.html
+    menu: 
+      side: left
+      width: wide
+    toc: true
+    toc-depth: 1
+    plugins: [highlight, zoom, notes]
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment="")
+```
+
+
+```{r}
+#| include: false
+# 指定图形的中文字体
+par(family  = 'STKaiti')
+#install.packages("showtext")
+library(showtext)
+showtext_auto()
+```
+
+
+# 2.1 数据的来源 Data Source
+
+---
+
+## 数据来源分类
+
+- **二手数据**（Secondary data）
+  - existing sources（已有来源）
+
+- **一手数据**（Primary data）
+  - 通过调查或实验获取
+  - surveys and experimental studies
+
+---
+
+## 宏观数据常用来源
+
+- **国家统计局**  
+  [http://www.stats.gov.cn/](http://www.stats.gov.cn/)
+
+- **中国政府网 / 各部门**  
+  [http://www.gov.cn/](http://www.gov.cn/)
+
+- **联合国统计司**  
+  [http://data.un.org/](http://data.un.org/)
+
+- **世界银行公开数据**  
+  [https://data.worldbank.org](https://data.worldbank.org)
+
+---
+
+## 政府部门网站
+
+外交部 · 国防部 · 发展改革委 · 教育部  
+公安部 · 监察部 · 民政部 · 司法部  
+环境保护部 · 住房城乡建设部 · 交通运输部 · 水利部  
+卫生计生委 · 人民银行 · 审计署 · 国资委  
+质检总局 · 新闻出版广电总局 · 体育总局 · 安全监管总局  
+知识产权局 · 旅游局 · 宗教局 · 参事室  
+港澳办 · 法制办 · 国研室 · 台办
+
+---
+
+## 学校购买的数据库
+
+### 宏观数据库（国家、省级、市、区县级）
+
+- **EPS 全球数据库**
+- **国研网**
+- **中国知网 · 统计数据**（试用）
+
+### 微观数据：上市公司数据库
+
+- **CSMAR** 国泰安经济金融数据库
+- **RESSET（锐思）** 金融研究数据库
+
+---
+
+### 访问数据库注意事项
+
+- VPN或校园网访问
+
+- 路径示例：图书馆主页 → 电子资源 → 中文数据库
+
+- **不要**通过百度等搜索引擎直接搜索数据库名称后访问（容易出现权限或安全问题）
+
+---
+
+### EPS 全球统计数据
+
+- 全称：Easy Professional Superior
+- 公司：北京福卡斯特信息技术有限公司
+- 网址：[http://olap.epsnet.com.cn](http://olap.epsnet.com.cn)
+
+主要内容包括：
+
+- 全球经济体数据
+- 中国区域经济数据库（分县级）
+- 中国区域经济数据库（分区域县）
+
+覆盖：基本情况、综合经济、农业、工业、投资及消费、教育、卫生和社会保障等。
+
+---
+
+### 国研网
+
+- 网址：[http://data.drcnet.com.cn](http://data.drcnet.com.cn)
+- 主办：国务院发展研究中心信息中心
+
+主要栏目：
+
+- 世界经济数据库
+- 宏观经济数据库
+- 区域经济数据库
+- 重点行业数据库
+
+---
+
+### 中国知网 · 统计数据
+
+- 网址：[http://tongji.cnki.net/kns55/index.aspx](http://tongji.cnki.net/kns55/index.aspx)
+- 中国经济与社会发展统计数据库
+
+可按以下维度检索：
+
+- **领域**
+- **地区**
+- **资料类型**
+
+支持统计年鉴、调查资料等多种类型。
+
+# 2.2 调查数据 Survey Data
+
+---
+
+调查环节：
+
+1. 明确调查目的与问题
+2. 确定调查对象与抽样框
+3. 设计问卷或调查表
+4. 选择调查方式（面访、电话、网络、邮寄等）
+5. 实施调查与数据收集
+6. 数据审核与整理
+
+---
+
+## 调查方式常见分类
+
+- **全面调查**（普查）
+- **非全面调查**
+  - 抽样调查
+  - 重点调查
+  - 典型调查
+
+
+---
+
+## 抽样调查
+
+- **总体**（Population）
+
+- **样本**（Sample）
+
+- **抽样框**（Sampling frame）
+
+- **概率抽样方法**
+  - 简单随机抽样
+  - 分层抽样
+  - 整群抽样
+  - 系统抽样
+  - 多阶段抽样
+
+---  
+
+### 总体（Population）
+
+**定义**：  
+我们想要研究的**全部对象**所构成的集合。
+
+**例子**：
+- 想了解某大学所有在校本科生的平均每周学习时间  
+
+  - 总体 = 该大学全部在校本科生
+  
+- 想研究全国高考考生的数学成绩分布  
+
+  - 总体 = 当年全部高考考生
+
+
+---
+
+### 样本（Sample）
+
+**定义**：  
+从总体中抽取的一部分个体，用来推断总体特征。
+
+**例子**：
+- 从某大学 2 万名本科生中，随机抽取 500 人进行问卷调查  
+
+  - 这 500 人就是样本
+  
+- 从全国高考考生中抽取 1 万人的成绩进行分析  
+
+  - 这 1 万人就是样本
+
+**核心思想**：用样本的信息去估计总体的未知特征（如均值、比例等）。
+
+---
+
+### 抽样框（Sampling Frame）
+
+总体中所有个体的**名单或名录**。
+
+---
+
+![](img/frame.png){width=80% fig-align="center"})
+
+---
+
+## 概率抽样方法
+
+**简单随机抽样**（Simple Random Sampling）
+
+**分层抽样**（Stratified Sampling）
+
+**整群抽样**（Cluster Sampling）
+
+**系统抽样**（Systematic Sampling）
+
+**多阶段抽样**（Multi-stage Sampling）
+
+
+---
+
+### 简单随机抽样（Simple Random Sampling）
+
+总体中每一个个体被抽中的概率完全相同，且抽取过程相互独立（或等概率无放回）。
+
+**优点**：简单、统计理论性质好  
+
+**缺点**：需要完整抽样框；当总体很大时实施成本高
+
+---
+
+![](img/simple.png){width=45% fig-align="center"}
+
+
+
+---
+
+### 分层抽样（Stratified Sampling）
+
+先将总体按照某个特征分成若干互不重叠的**层**（strata），再从每一层中独立进行随机抽样。
+
+**优点**：
+
+- 保证各层都有代表性
+
+- 通常能提高估计精度
+
+- 可对每层单独分析
+
+**适用情况**：总体内部差异较大，且可按重要特征分层时。
+
+---
+
+![](img/stratified.png){width=45% fig-align="center"}
+
+
+---
+
+### 整群抽样（Cluster Sampling）
+
+先将总体分成若干群（clusters），然后随机抽取一部分群，对抽中的群进行**全部调查**。
+
+---
+
+![](img/cluster.png){width=45% fig-align="center"}
+
+---
+
+**例子**：
+想调查某市小学生的视力情况。  
+以“学校”为群，随机抽取 20 所小学，然后调查这 20 所小学的全部学生。
+
+**优点**：实施方便、节省成本（尤其当个体分散时）  
+
+**缺点**：精度通常低于简单随机抽样（因为同一群内个体往往较相似）
+
+---
+
+### 系统抽样（Systematic Sampling）
+
+将总体按一定顺序排列，先随机确定一个起点，然后按固定间隔抽取个体。
+
+---
+
+![](img/systematic.png){width=45% fig-align="center"}
+
+---
+
+系统抽样
+
+**优点**：操作简单、样本分布较均匀  
+
+**缺点**：如果总体中的个体排列有周期性，可能产生偏差
+
+---
+
+### 多阶段抽样（Multi-stage Sampling）
+
+分多个阶段进行抽样，每个阶段使用不同的抽样单位。
+
+
+----
+
+![](img/1percent.png){width=45% fig-align="center"}
+
+
+
+---
+
+![](img/comparison.jpeg){width=45% fig-align="center"}
+
+
+
+# 2.3 实验数据 Experimental Data
+
+# 2.4 数据的误差
+
+---
+
+
+## 抽样误差（Sampling error）
+
+- 由随机抽样引起
+
+- 可以计算和控制
+
+- 样本越大，抽样误差通常越小
+
+## 非抽样误差（Non-sampling error）
+
+- 人为因素引起
+
+---
+
+### 非抽样误差的主要来源
+
+- **覆盖误差**：抽样框不完整或不准确
+- **无回答误差**：拒访、找不到被调查者
+- **测量误差**：问卷设计不当、访问员偏差、被访者记忆偏差
+- **处理误差**：编码、录入、数据清洗错误
+
+---
+
+### 减少误差的主要措施
+
+- 完善抽样框
+- 提高回答率（激励、多次回访）
+- 规范问卷设计与访问流程
+- 加强访员培训与督导
+- 数据双录与逻辑校验
+- 对缺失值和异常值进行审慎处理
+
+---
+
+## 第2章重点
+
+- 抽样框
+
+- 概率抽样
+
+    - 简单随机抽样simple random sampling
+    
+    - 分层抽样 stratified sampling
+    
+    - 整群抽样 cluster sampling
+    
+    - 系统抽样 systematic sampling
+    
+    - 多阶段抽样 multi-stage sampling  
+
+- 抽样误差与非抽样误差
+

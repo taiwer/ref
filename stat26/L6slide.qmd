@@ -1,0 +1,41 @@
+---
+title: 第6章 统计量及其抽样分布
+date: today
+author: 
+  name: "Li Zongzhang"
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+    toc: yes
+    number_sections: yes
+editor_options:
+  markdown:
+    wrap: 72
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment="")
+```
+
+
+```{r}
+#| include: false
+# 指定图形的中文字体
+par(family  = 'STKaiti')
+#install.packages("showtext")
+library(showtext)
+showtext_auto()
+```
+
+
+```{r echo=FALSE, results='asis'}
+
+
+files <- list.files(path = 'img/chap6', pattern = "png", full.names = TRUE)
+ 
+for (f in files) {
+  cat(paste0("![image_label](", f, ")\n"))
+}
+```
+

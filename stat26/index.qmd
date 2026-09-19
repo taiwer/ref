@@ -1,0 +1,94 @@
+---
+title: ""
+id: ppc
+about:
+  template: marquee
+  #image: img/cover_3d.jpg
+  links:
+    - text: B站主页
+      icon: globe2
+      href: https://space.bilibili.com/590872906
+    - text: Email   
+      icon: envelope
+      href: mailto:lizongzhang9@qq.com
+---
+
+::: {#ppc style="color:#044875"}
+欢迎访问《统计学》课程网站！
+
+:::
+
+# 教材
+
+-   统计学(第8版或第9版), 贾俊平 何晓群 金勇进编著，中国人民大学出版社,2021或2025.
+
+<img src="img/download.png" style="width: 24px; height: 24px;margin-right: 10px"/>[下载教材配套数据文件](https://pan.baidu.com/s/1TsHR_kYMCqd7pmbOqKUclg?pwd=6666)
+
+#  教学软件
+
+## 基础必修
+
+-   Microsoft Excel 2016或以上版本 <img src="img/excel_icon.png" style="width: 24px; height: 24px;margin-right: 10px"/>
+
+    -   **注意：不是WPS Excel** <img src="img/wps_icon.png" style="width: 24px; height: 24px;margin-right: 10px"/>
+
+## 进阶选修
+
+-   <img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px"> R  <https://www.r-project.org/>{target="_blank"}
+
+-   <img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px">R Studio <https://posit.co/download/rstudio-desktop/>{target="_blank"}
+
+#  软件准备
+
+## R和R Studio的的安装
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R和R Studio的下载](https://www.bilibili.com/video/BV1334y1y7U5/){target="_blank"}
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R和RStudio的安装](https://www.bilibili.com/video/BV1eR4y1V7uW/){target="_blank"}
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[不用安装就能用的RStudio------RStudio
+                Cloud](https://www.bilibili.com/video/BV1zY4y1M7HX/){target="_blank"}(若无法安装R和R Studio, 请看此视频)
+
+# 教学视频
+
+<img src="img/video.png" style="width: 24px; height: 24px;margin-right: 10px"/>[Excel数据分析实战](https://space.bilibili.com/590872906/channel/collectiondetail?sid=758820)
+
+
+# 教学平台
+
+-   雨课堂：考勤、作业、测验、直播回看
+
+-   QQ群：提问答疑
+
+# 参考书
+
+<img src="img/download.png" style="width: 24px; height: 24px;margin-right: 10px"/>[下载](https://pan.baidu.com/s/1yJ_6AiYyXOfm3d9izGCB5w?pwd=6666)
+
+# 课程考核
+
+-   平时成绩：50%
+
+    -   个人作业：25%
+    
+    -   小组作业：15%    
+
+    -   测验：5%    
+
+    -   考勤： 5%
+
+-   期末考试：50%
+
+::: {style="text-align: center;"}
+![](img/bili_up.jpg){width="10%"}
+:::
+
+::: {style="position: fixed; bottom: 10px; right: 70px; z-index: 1000;"}
+<a href='http://www.freevisitorcounters.com'>click here</a>
+
+```{=html}
+<script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=a1b2bcf47de785ab152ba2b2353aa09bd4f80670'></script>
+```
+```{=html}
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1174168/t/5"></script>
+```
+:::

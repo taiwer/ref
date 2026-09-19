@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Li Zongzhang">
+  <meta name="dcterms.date" content="2026-09-11">
+  <title>统计学26秋 – 问卷设计</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-0c22b6e252e162282a19289aa8a4686d.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+<!-- 1. 右下角 Home 按钮（完全使用原有的位置与大尺寸参数） -->
+<div style="
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  z-index: 1000;
+">
+  <a href="https://lizongzhang.github.io/stat26" style="
+       display: inline-flex;
+       align-items: center;
+       gap: 8px;
+       padding: 10px 20px;
+       background-color: rgba(255, 255, 255, 0.75);
+       color: #1a5f7a;
+       text-decoration: none;
+       border: 1.5px solid rgba(26, 95, 122, 0.35);
+       border-radius: 10px;
+       font-size: 18px;
+       font-weight: bold;
+       font-family: Arial, sans-serif;
+       backdrop-filter: blur(6px);
+       -webkit-backdrop-filter: blur(6px);
+       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+       transition: all 0.2s ease-in-out;
+     " onmouseover="this.style.backgroundColor='#1a5f7a'; this.style.color='#ffffff'; this.style.borderColor='#1a5f7a';" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.75)'; this.style.color='#1a5f7a'; this.style.borderColor='rgba(26, 95, 122, 0.35)';">
+    <span>🏠</span> Home
+  </a>
+</div>
+
+<!-- 2. header.html（右上角 Logo：完全还原原有 200px 宽度与绝对定位） -->
+<div style="
+  position: absolute; 
+  top: 20px; 
+  right: 20px; 
+  z-index: 1000;
+">
+  <img src="img/seal.png" style="
+         width: 40px; 
+         height: auto;
+         display: block;
+       " alt="logo">
+</div>
+
+<!-- ============================================================
+     Reveal.js slide zoom
+     Cmd/Ctrl +  : 放大幻灯片
+     Cmd/Ctrl -  : 缩小幻灯片
+     Cmd/Ctrl 0  : 恢复默认
+     ============================================================ -->
+
+<script>
+(function () {
+
+  let userZoom = 1;
+
+  const ZOOM_STEP = 1.10;
+  const MIN_ZOOM = 0.50;
+  const MAX_ZOOM = 2.50;
+
+  function getSlides() {
+    return document.querySelector('.reveal .slides');
+  }
+
+  /*
+   * Reveal.js 自己负责计算适合当前窗口的 scale。
+   *
+   * 我们只在 Reveal.js 的 scale 上再乘一个 userZoom。
+   */
+  function applyUserZoom() {
+
+    const slides = getSlides();
+
+    if (!slides || typeof Reveal === 'undefined') {
+      return;
+    }
+
+    const revealScale = Reveal.getScale();
+
+    if (!revealScale || !isFinite(revealScale)) {
+      return;
+    }
+
+    /*
+     * Reveal.js 当前版本使用 CSS zoom 来缩放 .slides。
+     * 因此直接在它计算出的 scale 上叠加我们的倍率。
+     */
+    slides.style.zoom = String(revealScale * userZoom);
+  }
+
+
+  function setUserZoom(value) {
+
+    userZoom = Math.max(
+      MIN_ZOOM,
+      Math.min(MAX_ZOOM, value)
+    );
+
+    applyUserZoom();
+  }
+
+
+  function zoomIn() {
+    setUserZoom(userZoom * ZOOM_STEP);
+  }
+
+
+  function zoomOut() {
+    setUserZoom(userZoom / ZOOM_STEP);
+  }
+
+
+  function resetZoom() {
+    setUserZoom(1);
+  }
+
+
+  /*
+   * Cmd/Ctrl + / -
+   *
+   * 注意：
+   * 我们主动阻止浏览器的默认网页缩放。
+   * 因此 Cmd+ 会真正控制幻灯片，而不是整个网页。
+   */
+  document.addEventListener('keydown', function (event) {
+
+    if (!(event.metaKey || event.ctrlKey)) {
+      return;
+    }
+
+    /*
+     * 如果用户正在输入框、文本框或可编辑区域，
+     * 不干扰正常的 Cmd+/Cmd- 操作。
+     */
+    const target = event.target;
+
+    if (
+      target &&
+      (
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.tagName === 'SELECT' ||
+        target.isContentEditable
+      )
+    ) {
+      return;
+    }
+
+
+    /*
+     * Cmd/Ctrl +
+     *
+     * Mac Chrome/Safari:
+     * event.key 通常是 "+" 或 "="
+     */
+    if (
+      event.key === '+' ||
+      event.key === '='
+    ) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      zoomIn();
+
+      return;
+    }
+
+
+    /*
+     * Cmd/Ctrl -
+     */
+    if (event.key === '-') {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      zoomOut();
+
+      return;
+    }
+
+
+    /*
+     * Cmd/Ctrl 0
+     */
+    if (event.key === '0') {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      resetZoom();
+
+      return;
+    }
+
+  }, true);
+
+
+  /*
+   * Reveal.js 初始化完成以后执行。
+   */
+  function initializeZoomControl() {
+
+    if (typeof Reveal === 'undefined') {
+      setTimeout(initializeZoomControl, 100);
+      return;
+    }
+
+
+    /*
+     * Reveal.js ready
+     */
+    Reveal.on('ready', function () {
+
+      userZoom = 1;
+
+      setTimeout(function () {
+        applyUserZoom();
+      }, 0);
+
+    });
+
+
+    /*
+     * Reveal.js 每次重新计算 slide scale 时都会触发 resize。
+     *
+     * 例如：
+     * - 浏览器窗口改变大小
+     * - 全屏
+     * - 改变屏幕
+     * - Reveal.layout()
+     *
+     * 这时重新叠加我们的 userZoom。
+     */
+    Reveal.on('resize', function () {
+
+      setTimeout(function () {
+        applyUserZoom();
+      }, 0);
+
+    });
+
+  }
+
+
+  initializeZoomControl();
+
+})();
+</script>
+
+<!-- 加载楷体风格字体 Noto Serif SC（中国镜像） -->
+<link href="https://fonts.googleapis.cn/css2?family=Noto+Serif+SC:wght@500&amp;display=swap" rel="stylesheet">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">问卷设计</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+<a href="https://space.bilibili.com/590872906/">Li Zongzhang</a> 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-09-11</p>
+</section>
+<section id="大纲" class="slide level2">
+<h2>大纲</h2>
+<ul>
+<li><p>1.1 选题</p></li>
+<li><p>1.2 定性数据</p></li>
+<li><p>1.3 定量数据</p></li>
+<li><p>1.4 在线工具</p></li>
+</ul>
+</section>
+<section id="选题" class="slide level2">
+<h2>1.1 选题</h2>
+</section>
+<section id="选题的基本原则" class="slide level2">
+<h2>选题的基本原则</h2>
+<ul>
+<li><p><strong>兴趣驱动</strong>：选择自己感兴趣的主题，保持动力。</p></li>
+<li><p><strong>可行性</strong>：确保资源、时间和目标人群可及。</p></li>
+<li><p><strong>明确性</strong>：研究问题清晰，能转化为可量化的问卷题目。</p></li>
+<li><p><strong>社会价值</strong>：选择对学术、社会或政策有意义的主题。</p></li>
+</ul>
+</section>
+<section id="步骤1确定研究目标" class="slide level2">
+<h2>步骤1：确定研究目标</h2>
+<ul>
+<li><p>明确调查的目的：</p>
+<ul>
+<li><p>探索现象（如）</p></li>
+<li><p>验证假设（如评优与学习时长、社团活动时长角色的关系）</p></li>
+<li><p>解决问题（如共享）</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="步骤2聚焦研究领域" class="slide level2">
+<h2>步骤2：聚焦研究领域</h2>
+<ul>
+<li>从广泛领域入手，逐步聚焦：
+<ul>
+<li><strong>学术类</strong>：学习习惯、课程满意度、在线学习效果。</li>
+<li><strong>生活类</strong>：消费行为、心理健康、宿舍生活。</li>
+<li><strong>社会类</strong>：环保意识、职业规划、性别平等态度。</li>
+</ul></li>
+<li>提示：结合自身专业或社会热点。</li>
+</ul>
+</section>
+<section id="步骤3评估选题可行性" class="slide level2">
+<h2>步骤3：评估选题可行性</h2>
+<ul>
+<li><p><strong>目标人群</strong>：是否容易接触到足够样本（如本校学生）？</p></li>
+<li><p><strong>数据类型</strong>：是否适合定量或定性数据？</p></li>
+<li><p><strong>时间与资源</strong>：问卷设计、发放和分析的时间是否充足？</p></li>
+<li><p>示例：<br>
+选调生</p></li>
+</ul>
+</section>
+<section id="步骤4查阅文献与背景" class="slide level2">
+<h2>步骤4：查阅文献与背景</h2>
+<ul>
+<li><p><strong>目的</strong>：了解已有研究，避免重复，找到切入点。</p></li>
+<li><p><strong>方法</strong>：</p>
+<ul>
+<li><p>市调大赛选题。</p></li>
+<li><p>搜索关键词，如“大学生+心理健康+问卷”。</p></li>
+</ul></li>
+<li><p>示例：发现“大学生拖延症”研究较多，但“拖延症与社交媒体使用”的结合较少，可作为切入点。</p></li>
+</ul>
+</section>
+<section id="步骤5细化研究问题" class="slide level2">
+<h2>步骤5：细化研究问题</h2>
+<ul>
+<li><p>将宽泛主题转化为具体问题：</p>
+<ul>
+<li><p>宽泛：“大学生心理健康状况”。</p></li>
+<li><p>具体：“大学生学业/择业/同伴压力与焦虑水平的关系”。</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="常见选题误区" class="slide level2">
+<h2>常见选题误区</h2>
+<ul>
+<li><p><strong>过于宽泛</strong>：如“大学生生活”（需聚焦具体方面）。</p></li>
+<li><p><strong>过于敏感</strong>：如个人隐私问题，可能降低响应率。</p></li>
+<li><p><strong>缺乏新意</strong>：重复已有研究，需找到独特角度。</p></li>
+<li><p><strong>不可量化</strong>：如“大学生幸福感”（需定义可测量的指标）。</p></li>
+</ul>
+</section>
+<section id="实用建议" class="slide level2">
+<h2>实用建议</h2>
+<ul>
+<li><p><strong>头脑风暴</strong>：与同学、导师讨论，激发灵感。</p></li>
+<li><p><strong>小规模测试</strong>：先试探性询问几人，验证主题吸引力。</p></li>
+<li><p><strong>结合热点</strong>：如疫情后的学习方式变化、AI工具使用情况。</p></li>
+<li><p><strong>工具支持</strong>：使用问卷星便于数据收集。</p></li>
+</ul>
+</section>
+<section>
+<section id="定性数据" class="title-slide slide level1 center">
+<h1>1.2 定性数据</h1>
+<p>单项选择题</p>
+<ul>
+<li>单项选择题适合收集定性/分类数据，包括 <strong>并列分类数据</strong> 或 <strong>有序分类数据</strong></li>
+</ul>
+<p>多项选择题</p>
+<ul>
+<li>每个选项是一个0-1变量</li>
+</ul>
+</section>
+<section id="单项选择题" class="slide level2">
+<h2>单项选择题</h2>
+<ul>
+<li><p><strong>题干清晰</strong>：避免模糊或歧义</p></li>
+<li><p><strong>选项互斥</strong>：不同答案之间不重叠</p></li>
+<li><p><strong>顺序合理</strong>：非常不满意 → 不满意 → 一般 → 满意 → 非常满意</p></li>
+<li><p><strong>覆盖全面</strong>：提供“其他/不愿回答”选项</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="题干选项简洁明确">题干选项简洁明确</h3>
+<p>避免歧义，确保每位受访者理解一致。</p>
+<p>你平时经常点外卖吗？</p>
+<p>A. 从不怎么点</p>
+<p>B. 偶尔点一下</p>
+<p>C. 经常点</p>
+<p>D. 很经常点</p>
+<p>E. 特别经常点</p>
+</section>
+<section class="slide level2">
+
+<p>题干：在过去一周，你使用外卖服务的频率是？ 选项：</p>
+<p>A. 从未</p>
+<p>B. 1–3 次</p>
+<p>C. 4–6 次</p>
+<p>D. 7次及以上</p>
+</section>
+<section class="slide level2">
+
+<p>选项互斥</p>
+<p>不同选项之间不能重叠，否则影响统计。</p>
+<p>错误示例：年龄：A. 18–25 B. 25–35 C. 35–45（25 和 35 重复）</p>
+<p>改进示例：年龄：A. 18–24 B. 25–34 C. 35–44 D. 45及以上</p>
+</section>
+<section id="单项选择题-1" class="slide level2">
+<h2>单项选择题</h2>
+<p>您希望孩子读书至少读到什么程度？</p>
+<p>1.现在就不想读书了</p>
+<p>2.小学毕业 （6 年）</p>
+<p>3.初中毕业 （9 年）</p>
+<p>4.职业高中/中专/技校 （大约 12 年）</p>
+<p>5.普通高中毕业 （12 年）</p>
+<p>6.大学专科（15 年）</p>
+<p>7.大学本科（16-17 年）</p>
+<p>8.研究生（硕士大约 19 年，博士大约 23 年）</p>
+<p>9.无所谓</p>
+</section>
+<section id="多项选择题" class="slide level2">
+<h2>多项选择题</h2>
+<p>D18 本自然村内或附近有没有以下金融机构？【多选】</p>
+<p>1.商业银行（包括邮政储蓄）</p>
+<p>2.农村信用合作社或农村资金互助社</p>
+<p>3.村村通</p>
+<p>4.其他非正规金融机构</p>
+<p>5.没有【跳至 D19】</p>
+</section>
+<section class="slide level2">
+
+</section>
+<section class="slide level2">
+
+<p>最近家庭借出给个人的款项（询问五年内印象最深刻的三笔）</p>
+<p>G463.最近五年是否借过钱给其他人？</p>
+<p>1.是 2.否【结束访问】</p>
+<p>G467 对方借款的用途</p>
+<p>1.娶媳妇 2.嫁女 3.丧事 4.看病 5.买食物</p>
+<p>6.建房 7. 购房 8.买车 9.买其他日用品</p>
+<p>10.孩子上大学 11.孩子上高中 12.孩子上初中</p>
+<p>13.孩子上小学 14.农业生产 15.做小生意</p>
+<p>16.投资办企业 17.出去打工 18.还旧债</p>
+<p>19.借给亲戚朋友 20.借给其他人</p>
+<p>21.通过抬会、摇会等民间金融组织把钱借出去 22.其他，请说明</p>
+</section>
+<section class="slide level2">
+
+<h3 id="选择-填空">选择 + 填空</h3>
+
+<img src="img/lend.png" alt="" class="r-stretch"></section></section>
+<section>
+<section id="定量数据" class="title-slide slide level1 center">
+<h1>1.3 定量数据</h1>
+<ul>
+<li><p>定量数据: 用数字表示、能做计算的数据。由被访者填答的填空题。</p></li>
+<li><p>提供数值区间选项的选择题，只可排序，不可计算，属于定性数据。</p></li>
+</ul>
+<p>每周点外卖的支出：</p>
+<p>A. 0 ～ 50</p>
+<p>B. 51 ~ 100</p>
+<p>C. 101 ~ 150</p>
+<p>D. 150以上</p>
+</section>
+<section class="slide level2">
+
+<p>题干明确，单位清晰</p>
+<p>明确说明要测量的数量及单位，避免歧义。</p>
+<p>示例：</p>
+<p>❌ “你每天锻炼多久？”（单位不明）</p>
+<p>✅ “你每天锻炼多少分钟？（请填写整数，单位：分钟）”</p>
+</section>
+<section class="slide level2">
+
+<p>设置合理范围或提示</p>
+<p>给出上下界或参考范围，减少异常值和错误输入。</p>
+<p>示例：</p>
+<p>“你上周点外卖的次数（0–20 次）：__”</p>
+</section>
+<section class="slide level2">
+
+<p>提示填写格式</p>
+<p>指导填写整数、小数或百分比，保证数据统一性。</p>
+<p>示例：</p>
+<p>“你每天平均睡眠时间（小时，精确到 0.5 小时）：__”</p>
+</section>
+<section class="slide level2">
+
+<p>激励和易填性</p>
+<p>短题、简洁题干，提高完成率。</p>
+<p>对连续数字题目，可提供滑条或数字选择器（电子问卷）。</p>
+</section>
+<section class="slide level2">
+
+<p>分解复杂问题</p>
+<p>如果一个数字涉及多个维度，可拆分为多题。</p>
+<p>示例：</p>
+<p>学习时间</p>
+<p>题干：你在过去一周用于自主学习的总时间是多少？</p>
+<p>（1）周一至周五：__小时</p>
+<p>（2）周六至周日：__小时”</p>
+</section>
+<section class="slide level2">
+
+<h3 id="务工收入">务工收入</h3>
+<p><img src="img/outwork1.png" alt=""></p>
+<p><img src="img/outwork2.png" alt=""></p>
+</section>
+<section class="slide level2">
+
+<h3 id="教育开支">教育开支</h3>
+
+<img src="img/edu_fee.png" alt="" class="r-stretch"></section>
+<section id="多项选择题提取定量变量" class="slide level2">
+<h2>多项选择题提取定量变量</h2>
+<p>多项选择题: 允许受访者在多个选项中勾选一个或多个。</p>
+<ul>
+<li><p>原始数据通常是分类数据（名义变量），每个选项本身没有大小顺序。</p></li>
+<li><p>统计每位受访者勾选的选项总数。</p></li>
+<li><p>勾选的选项总数是数值型变量（定量变量），可以做加减、平均、相关等统计分析。</p></li>
+</ul>
+<p>题目：你喜欢的运动有哪些？（可多选）</p>
+<p>A. 足球</p>
+<p>B. 篮球</p>
+<p>C. 游泳</p>
+<p>D. 跑步</p>
+</section>
+<section class="slide level2">
+
+<p>题目：你过去一个月内使用过哪些外卖平台？（可多选）</p>
+<p>A. 美团</p>
+<p>B. 饿了么</p>
+<p>C. 京东</p>
+<p>D. 淘宝</p>
+<p>E. 商家自营平台(麦当劳/KFC/必胜客等)</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="在线工具" class="title-slide slide level1 center">
+<h1>1.4 在线工具</h1>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">问卷星 <a href="https://www.wjx.cn/" target="_blank">https://www.wjx.cn/</a></p>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">腾讯问卷<a href="https://wj.qq.com/" target="_blank">https://wj.qq.com/</a></p>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">金数据<a href="https://jinshuju.net/" target="_blank">https://jinshuju.net/</a></p>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">SurveyMonkey<a href="https://www.surveymonkey.com/" target="_blank">https://www.surveymonkey.com/</a></p>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">金数据<a href="https://jinshuju.net/" target="_blank">https://jinshuju.net/</a></p>
+</section>
+<section id="ai和在线工具" class="slide level2">
+<h2>AI和在线工具</h2>
+<p>SurveyMonkey Get Quick Insights with Analyze with AI</p>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px"><a href="https://help.surveymonkey.com/en/surveymonkey/analyze/analyze-with-ai/" target="_blank">https://help.surveymonkey.com/en/surveymonkey/analyze/analyze-with-ai/</a></p>
+<p>Blix 是一款专注于开放性文本分析的 AI工具，利用大语言模型对问卷中的开放性回答进行主题提取、情感分析和趋势识别，适用于市场调研、HR 调查等场景</p>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px"><a href="https://blix.ai/" target="_blank">https://blix.ai/</a></p>
+<p>SPSSPRO 众言科技开发在线统计分析平台</p>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px"><a href="https://www.spsspro.com/" target="_blank">https://www.spsspro.com/</a></p>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><a href="https://lizongzhang.github.io/stat26" class="uri">https://lizongzhang.github.io/stat26</a><br>© Li Zongzhang</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
