@@ -144,8 +144,8 @@ const CONFIG = {
   repo  : 'ref',          // ← 改成仓库名（网址里的 /ref/ 那一段）
   branch: 'main',         // ← 分支名，一般是 main
 
-  siteTitle   : '统计学 & R语言与统计应用',
-  siteSubtitle: '教材 · 讲义 · 案例 · 实验 · 习题解答',
+  siteTitle   : '我的知识库',
+  siteSubtitle: '笔记 · 教程 · 资源收藏',
   notice      : '本站电子资源、讲义供学习交流使用，请勿用于商业用途。',
 
   // 只显示这些后缀的文件
@@ -254,7 +254,7 @@ const CONFIG = {
       .map(t => ({ path: t.path, size: t.size }))
       .sort((a, b) => collator.compare(a.path, b.path));
     const out = { files: files, truncated: !!data.truncated };
-    writeCache(out);
+    if (files.length) writeCache(out);   // 空结果不缓存，避免仓库刚建好时「共 0 个文件」被缓存 10 分钟
     return out;
   }
 
